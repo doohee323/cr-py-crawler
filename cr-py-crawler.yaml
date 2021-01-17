@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cr-py-crawler
+spec:
+  selector:
+    matchLabels:
+      app: cr-py-crawler
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cr-py-crawler
+    spec:
+      containers:
+      - name: cr-py-crawler
+#        image: doohee323/cr-py-crawler:latest
+        image: ${REPOSITORY_TAG}
+#        imagePullPolicy: Never
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+        volumeMounts:
+          - name: local-persistent-storage
+            mountPath: /mnt
+      volumes:
+        - name: local-persistent-storage
+          persistentVolumeClaim:
+            claimName: pvc-nfs-dynamic
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cr-py-crawler
+spec:
+  type: NodePort
+  selector:
+    app: cr-py-crawler
+  ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 30007

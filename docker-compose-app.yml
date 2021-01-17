@@ -1,0 +1,13 @@
+version: '2'
+services:
+  cr-py-crawler:
+    image: doohee323/cr:latest
+    build: .
+    environment:
+      - DATASOURCE_URL=cr-py-crawler-mysql:3306/cr?useUnicode=true&characterEncoding=utf8&useSSL=false
+      - DATASOURCE_USERNAME=root
+      - DATASOURCE_PASSWORD=
+    ports:
+      - 8000:8000
+    volumes:
+      - ./mnt:/mnt

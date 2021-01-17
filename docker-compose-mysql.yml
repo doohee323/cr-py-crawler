@@ -1,0 +1,15 @@
+version: '2'
+services:
+  cr-py-crawler-mysql:
+#    image: doohee323/cr-py-crawler-mysql:master
+    image: mysql:5.7.20
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=cr
+      - MYSQL_PORT=3306
+    ports:
+      - 3306:3306
+    volumes:
+      - ./projects/cr-py-crawler/docker/mysql/sql:/docker-entrypoint-initdb.d
+    command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
