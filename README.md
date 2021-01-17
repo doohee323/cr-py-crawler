@@ -47,7 +47,7 @@ Youtube crawler with scrapy and selenium(for lazy loading elements).
     sudo chmod -Rf 777 /vagrant/data
 
     cd /vagrant/projects
-    git clone https://github.com/doohee323/tz-py-crawler.git
+    git clone https://github.com/doohee323/cr-py-crawler.git
     cd /vagrant/projects/cr-py-crawler
 
     k apply -f cr-py-crawler-pv.yaml
@@ -73,7 +73,7 @@ Youtube crawler with scrapy and selenium(for lazy loading elements).
                 ID: GitHub
                 Description: GitHub
     
-        Repository HTTPS URL: https://github.com/doohee323/tz-py-crawler.git
+        Repository HTTPS URL: https://github.com/doohee323/cr-py-crawler.git
 
     # Run the project
 
